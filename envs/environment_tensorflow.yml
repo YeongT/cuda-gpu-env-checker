@@ -1,0 +1,25 @@
+# tensorflow 2.6.0 환경에서 protobuf 버전 호환 문제로 인해 아래 버전으로 고정합니다.
+# pip install "protobuf<=3.20.3"
+name: tensorflow-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy=1.19.2
+  - pip
+  - cudatoolkit=11.0
+  - cudnn=8.0
+  - pip:
+      - tensorflow==2.6.0
+      - protobuf<=3.20.3
+      - opencv-python
+      - matplotlib
+      - pyyaml
+      - psutil
+      - tqdm
+      - pandas
+      - pillow
+      - requests
+      - scipy
+
