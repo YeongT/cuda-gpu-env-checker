@@ -1,0 +1,41 @@
+# TensorFlow GPU conda environment for this notebook
+# Host: Windows 10
+# NVIDIA driver: 577 (e.g. 577.xx)
+# GPU: NVIDIA GeForce GTX 1050 Ti
+# Notes:
+# - This environment installs CUDA runtime and cuDNN via conda (cudatoolkit/cudnn) so system-wide CUDA installation is not required.
+# - tensorflow==2.6.0 historically pairs with CUDA 11.2 / cuDNN 8.1; this file updates cudatoolkit/cudnn accordingly so the necessary DLLs (e.g. cusolver64_11.dll) are available.
+# - Prefer conda-forge channel first to avoid mkl/numpy conflicts when solving packages on Windows.
+# - If you still hit solver issues, try creating the env with `mamba env create -f ...` (mamba uses libmamba and is faster/less error-prone).
+
+name: tensorflow-cuda
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - cudatoolkit=11.2
+  - cudnn=8.1
+  - numpy>=1.19.2,<1.23
+  - scipy
+  - pip:
+    - tensorflow==2.6.0
+    - protobuf<=3.20.3
+    - opencv-python
+    - matplotlib
+    - pyyaml
+    - psutil
+    - tqdm
+    - pandas
+    - pillow
+    - requests
+
+# Quick creation (PowerShell):
+#   conda env create -f envs\environment_tensorflow_cuda.yml
+# Activate:
+#   conda activate tensorflow-cuda
+# Quick test (PowerShell):
+#   python -c "import tensorflow as tf; print('tf', tf.__version__); print('GPUs', tf.config.list_physical_devices('GPU'))"
+# Check driver:
+#   nvidia-smi
