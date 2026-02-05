@@ -1,0 +1,22 @@
+# Host system and GPU notes
+# OS: Windows 10
+# NVIDIA driver: 577 (e.g. 577.xx)
+# GPU: NVIDIA GeForce GTX 1050 Ti
+# Notes: Created from the following conda commands:
+#   conda create -n pytorch-cuda python=3.11 -y
+#   conda activate pytorch-cuda
+#   conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
+
+name: pytorch-cuda
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - pip:
+    - pytest
